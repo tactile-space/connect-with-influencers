@@ -1,4 +1,3 @@
-
 import React from "react";
 import {
   MapPin,
@@ -83,10 +82,8 @@ const InfluencerModal = ({ influencer, isOpen, onClose }: InfluencerModalProps) 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="max-w-2xl p-0 overflow-hidden animate-scale-in">
-        <DialogClose className="absolute right-4 top-4 z-10">
-          <div className="bg-black/20 backdrop-blur-md rounded-full p-1 hover:bg-black/30 transition-colors">
-            <X className="h-4 w-4 text-white" />
-          </div>
+        <DialogClose className="absolute right-4 top-4 z-50 bg-black/30 backdrop-blur-md rounded-full p-1.5 hover:bg-black/50 transition-colors">
+          <X className="h-4 w-4 text-white" />
           <span className="sr-only">Close</span>
         </DialogClose>
         
@@ -118,14 +115,14 @@ const InfluencerModal = ({ influencer, isOpen, onClose }: InfluencerModalProps) 
           </DialogHeader>
           <p className="text-muted-foreground">@{username}</p>
           
-          <div className="flex justify-center gap-2 mt-3">
+          <div className="flex justify-center gap-2 mt-3 flex-wrap">
             <Badge variant="secondary">{primaryGenre}</Badge>
             {secondaryGenres && secondaryGenres.map((genre) => (
               <Badge key={genre} variant="outline">{genre}</Badge>
             ))}
           </div>
           
-          <div className="flex items-center justify-center gap-2 mt-3 text-sm text-muted-foreground">
+          <div className="flex items-center justify-center gap-2 mt-3 text-sm text-muted-foreground flex-wrap">
             <div className="flex items-center">
               <MapPin className="h-3.5 w-3.5 mr-1" />
               <span>{location}</span>

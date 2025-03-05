@@ -34,66 +34,63 @@ const InfluencerCard = ({ influencer, onClick }: InfluencerCardProps) => {
   return (
     <Card
       className={cn(
-        "overflow-hidden border bg-card h-full cursor-pointer card-hover",
+        "overflow-hidden border bg-card cursor-pointer card-hover",
         "animate-slide-in-bottom opacity-0 [animation-fill-mode:forwards]",
         "transition-all duration-300"
       )}
       style={{ animationDelay: `${(id % 10) * 50}ms` }}
       onClick={() => onClick(influencer)}
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10" />
-        <img
-          src={profilePicture}
-          alt={name}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
-        />
-        <div className="absolute top-3 right-3 z-20">
+      <CardContent className="p-3 flex items-center space-x-3">
+        <div className="relative flex-shrink-0">
+          <div className="h-16 w-16 rounded-full overflow-hidden bg-secondary">
+            <img
+              src={profilePicture}
+              alt={name}
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
           {isVerified && (
-            <span className="bg-primary/90 text-white p-1 rounded-full">
-              <BadgeCheck className="h-4 w-4" />
+            <span className="absolute bottom-0 right-0 bg-primary/90 text-white p-1 rounded-full">
+              <BadgeCheck className="h-3 w-3" />
             </span>
           )}
         </div>
-        <div className="absolute left-3 bottom-3 z-20">
-          <Badge
-            variant="secondary"
-            className="text-xs font-normal bg-black/40 text-white border-0 backdrop-blur-sm"
-          >
-            {primaryGenre}
-          </Badge>
-        </div>
-      </div>
 
-      <CardContent className="p-4">
-        <div className="space-y-3">
-          <div className="space-y-1">
+        <div className="flex-1 min-w-0">
+          <div className="space-y-1 mb-2">
             <div className="flex items-center justify-between">
-              <h3 className="font-medium truncate">{name}</h3>
+              <h3 className="font-medium truncate text-sm">{name}</h3>
+              <Badge
+                variant="secondary"
+                className="text-xs font-normal ml-2 px-1.5 py-0"
+              >
+                {primaryGenre}
+              </Badge>
             </div>
-            <p className="text-sm text-muted-foreground">@{username}</p>
+            <p className="text-xs text-muted-foreground">@{username}</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-2">
-            <div className="flex items-center text-sm">
-              <Users className="h-3.5 w-3.5 mr-1 text-muted-foreground" />
+          <div className="grid grid-cols-2 gap-x-4 gap-y-1">
+            <div className="flex items-center text-xs">
+              <Users className="h-3 w-3 mr-1 text-muted-foreground" />
               <span>{formatFollowers(followers)}</span>
             </div>
             
-            <div className="flex items-center text-sm justify-self-end">
-              <Heart className="h-3.5 w-3.5 mr-1 text-muted-foreground" />
+            <div className="flex items-center text-xs">
+              <Heart className="h-3 w-3 mr-1 text-muted-foreground" />
               <span>{engagement.toFixed(1)}%</span>
             </div>
             
-            <div className="flex items-center text-sm">
-              <DollarSign className="h-3.5 w-3.5 mr-1 text-muted-foreground" />
+            <div className="flex items-center text-xs">
+              <DollarSign className="h-3 w-3 mr-1 text-muted-foreground" />
               <span>${price}</span>
             </div>
             
-            <div className="flex items-center text-sm justify-self-end">
-              <MapPin className="h-3.5 w-3.5 mr-1 text-muted-foreground" />
-              <span className="truncate max-w-[80px]">{location}</span>
+            <div className="flex items-center text-xs">
+              <MapPin className="h-3 w-3 mr-1 text-muted-foreground" />
+              <span className="truncate">{location}</span>
             </div>
           </div>
         </div>
