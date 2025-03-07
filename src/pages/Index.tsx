@@ -70,13 +70,13 @@ const Index = () => {
   const currentSortValue = `${sortOption.field}-${sortOption.direction}`;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMwMDAiIGZpbGwtb3BhY2l0eT0iLjAyIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIxIDEuNzktNCA0LTRzNCAxLjc5IDQgNC0xLjc5IDQtNCA0LTQtMS43OS00LTRtMC0xN2MwLTIuMjEgMS43OS00IDQtNHM0IDEuNzkgNCA0LTEuNzkgNC00IDQtNC0xLjc5LTQtNG0tMTcgMGMwLTIuMjEgMS43OS00IDQtNHM0IDEuNzkgNCA0LTEuNzkgNC00IDQtNC0xLjc5LTQtNCIvPjwvZz48L2c+PC9zdmc+')]">
       <Navbar />
       
       <main className="container mx-auto px-4 md:px-6 pt-24 pb-16">
         <div className="space-y-6">
-          <div>
-            <h1 className="text-3xl font-semibold tracking-tight">Find Instagram Influencers</h1>
+          <div className="max-w-3xl">
+            <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">Find Instagram Influencers</h1>
             <p className="text-muted-foreground mt-1">
               Discover and connect with the perfect influencers for your brand
             </p>
@@ -91,15 +91,23 @@ const Index = () => {
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="w-full sm:w-auto bg-white dark:bg-card border hover:border-primary">
-                  <ArrowUpDown className="h-4 w-4 mr-2" />
+                <Button 
+                  variant="outline" 
+                  className="w-full sm:w-auto bg-gradient-to-r from-blue-500/10 to-blue-600/5 backdrop-blur-sm border hover:border-primary/60 
+                          hover:shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+                >
+                  <ArrowUpDown className="h-4 w-4 mr-2 text-blue-500" />
                   <span>Sort</span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56">
+              <DropdownMenuContent align="end" className="w-56 animate-fade-in shadow-xl">
                 <DropdownMenuRadioGroup value={currentSortValue} onValueChange={handleSortChange}>
                   {sortOptions.map((option) => (
-                    <DropdownMenuRadioItem key={option.value} value={option.value}>
+                    <DropdownMenuRadioItem 
+                      key={option.value} 
+                      value={option.value}
+                      className="hover:bg-primary/5 cursor-pointer transition-colors"
+                    >
                       {option.label}
                     </DropdownMenuRadioItem>
                   ))}
@@ -108,12 +116,12 @@ const Index = () => {
             </DropdownMenu>
           </div>
           
-          <Separator />
+          <Separator className="bg-gradient-to-r from-border via-border to-transparent" />
           
           {/* Influencer Grid */}
           {isLoading ? (
             <div className="flex items-center justify-center py-12">
-              <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+              <Loader2 className="h-8 w-8 animate-spin text-primary" />
             </div>
           ) : error ? (
             <div className="text-center py-12 text-destructive">
@@ -127,7 +135,7 @@ const Index = () => {
               </Button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
               {influencers.map((influencer) => (
                 <InfluencerCard
                   key={influencer.id}

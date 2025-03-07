@@ -109,6 +109,14 @@ export default {
 				'pulse-subtle': {
 					'0%, 100%': { opacity: '1' },
 					'50%': { opacity: '0.85' }
+				},
+				'shimmer': {
+					'0%': { backgroundPosition: '-200% 0' },
+					'100%': { backgroundPosition: '200% 0' }
+				},
+				'bounce-light': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-5%)' }
 				}
 			},
 			animation: {
@@ -121,11 +129,16 @@ export default {
 				'slide-in-right': 'slide-in-right 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
 				'slide-out-right': 'slide-out-right 0.3s ease-out',
 				'slide-in-bottom': 'slide-in-bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-				'pulse-subtle': 'pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+				'pulse-subtle': 'pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+				'shimmer': 'shimmer 2s infinite linear',
+				'bounce-light': 'bounce-light 2s ease-in-out infinite'
 			},
 			transitionTimingFunction: {
 				'elastic': 'cubic-bezier(0.16, 1, 0.3, 1)',
 			},
+			backgroundImage: {
+				'gradient-shimmer': 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent)',
+			}
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

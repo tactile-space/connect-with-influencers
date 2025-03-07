@@ -62,10 +62,12 @@ const CityDropdown = ({ onSelect }: CityDropdownProps) => {
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className="w-full justify-between bg-white dark:bg-card border transition-all hover:border-primary"
+            className="w-full justify-between bg-white/80 dark:bg-card/80 backdrop-blur-sm border shadow-sm 
+            transition-all duration-300 hover:shadow-md hover:border-primary/60 hover:scale-[1.02] 
+            active:scale-[0.98] focus:ring-2 focus:ring-primary/20"
           >
             <div className="flex items-center gap-2 truncate">
-              <MapPin className="h-4 w-4 text-muted-foreground" />
+              <MapPin className="h-4 w-4 text-blue-500" />
               <span className="truncate">{getDisplayValue()}</span>
             </div>
             <div className="flex items-center gap-1">
@@ -76,7 +78,7 @@ const CityDropdown = ({ onSelect }: CityDropdownProps) => {
                     e.stopPropagation();
                     clearSelection();
                   }}
-                  className="h-4 w-4 p-0 hover:bg-transparent"
+                  className="h-4 w-4 p-0 hover:bg-transparent rounded-full opacity-70 hover:opacity-100 transition-opacity"
                 >
                   <X className="h-3 w-3" />
                   <span className="sr-only">Clear</span>
@@ -86,7 +88,7 @@ const CityDropdown = ({ onSelect }: CityDropdownProps) => {
             </div>
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-full p-0" align="start">
+        <PopoverContent className="w-full p-0 shadow-xl border border-primary/10 animate-scale-in" align="start">
           <Command>
             <CommandInput placeholder="Search cities..." className="h-9" />
             <CommandList>
@@ -97,7 +99,7 @@ const CityDropdown = ({ onSelect }: CityDropdownProps) => {
                     key={city.value}
                     value={city.value}
                     onSelect={() => handleSelect(city.value)}
-                    className="flex items-center justify-between"
+                    className="flex items-center justify-between hover:bg-primary/5 transition-colors"
                   >
                     <div className="flex flex-col">
                       <span>{city.label}</span>
@@ -106,7 +108,7 @@ const CityDropdown = ({ onSelect }: CityDropdownProps) => {
                       </span>
                     </div>
                     {selectedCity === city.value && (
-                      <Check className="h-4 w-4 text-primary" />
+                      <Check className="h-4 w-4 text-primary animate-fade-in" />
                     )}
                   </CommandItem>
                 ))}
